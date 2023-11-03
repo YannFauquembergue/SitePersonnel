@@ -1,6 +1,8 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Mémorisation des informations du formulaire
     $nom = $_POST["nom"];
     $email = $_POST["email"];
     $message = $_POST["message"];
