@@ -1,5 +1,6 @@
 <?php
 
+// On vérifie qu'un formulaire a été soumis en accédant à cette page
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Mémorisation des informations du formulaire
@@ -7,27 +8,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $message = $_POST["message"];
 
-    // Adresse e-mail de réception
-    $destinataire = "fauquembergueyann@gmail.com";
+    // Adresse e-mail cible
+    $to = "fauquembergueyann@gmail.com";
 
     // Sujet du mail
     $sujet = "Contact de la part de $nom";
 
     // Corps du mail
-    $corpsMessage = "Nom: $nom\n";
-    $corpsMessage .= "Email: $email\n\n";
-    $corpsMessage .= "Message:\n$message";
+    $msg = "Nom: $nom\n";
+    $msg .= "Email: $email\n\n";
+    $msg .= "Message:\n$message";
 
-    // En-têtes du mail
-    $headers = "De: $email";
+    // En-tête du mail
+    $header = "De: $email";
 
     // Envoi du mail
-    mail($destinataire, $sujet, $corpsMessage, $headers);
+    mail($to, $sujet, $msg, $header);
 
-    // Redirection vers une page de confirmation
+    // Redirection vers la page de confirmation
     header("Location: submitted.html");
-} else {
-    // Redirection en cas d'accès direct au script sans soumission de formulaire
+} 
+else 
+{
+    // Redirection vers l'accueil si on accède à cette page sans soumettre un formulaire
     header("Location: index.html");
 }
 
